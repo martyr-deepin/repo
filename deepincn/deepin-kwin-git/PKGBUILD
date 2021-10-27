@@ -9,10 +9,10 @@ url="https://github.com/linuxdeepin/dde-kwin"
 license=('GPL3')
 depends=('deepin-qt5integration' 'deepin-wallpapers' 'kwin')
 makedepends=('extra-cmake-modules' 'expac' 'ninja' 'qt5-tools')
-source=("$pkgname::git://github.com/linuxdeepin/dde-api/"
-        $pkgname-tabbox-chameleon-rename.patch::https://github.com/linuxdeepin/dde-kwin/pull/106.patch
-        $pkgname-added-functions-from-their-forked-kwin.patch
-        $pkgname-crash.patch)
+source=("$pkgname::git://github.com/linuxdeepin/dde-kwin/"
+        tabbox-chameleon-rename.patch
+        added-functions-from-their-forked-kwin.patch
+	fix-crash.patch)
 sha512sums=('SKIP'
             'c98ee0d884f833b58c207437bddfca9f8c31d71c28d9bfc4de880e937e0bb9094466d1ccf348bae2b3581c2159af448b218cfe3d79c8c4d74c7effda491162bb'
             '48a3bead1c7cde1261f5f710fd055c52f061320999064ba4cc96a81f9b0770ea2a8fba7aff37d20bb7671b219c38bf8424f24fd7742d36b3c6bf171d3874c1f4'
@@ -26,9 +26,9 @@ pkgver() {
 prepare() {
   cd $pkgname
   sed -i 's|/usr/share/backgrounds/default_background.jpg|/usr/share/backgrounds/deepin/desktop.jpg|' plugins/kwineffects/multitasking/background.cpp
-  patch -R -p1 -i ../$pkgname-added-functions-from-their-forked-kwin.patch
-  patch -p1 -i ../$pkgname-tabbox-chameleon-rename.patch
-  patch -p1 -i ../$pkgname-crash.patch
+  patch -R -p1 -i ../added-functions-from-their-forked-kwin.patch
+  patch -p1 -i ../tabbox-chameleon-rename.patch
+  patch -p1 -i ../fix-crash.patch
 }
 
 build() {
