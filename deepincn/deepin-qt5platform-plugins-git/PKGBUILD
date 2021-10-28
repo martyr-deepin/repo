@@ -1,7 +1,7 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
 pkgname=deepin-qt5platform-plugins-git
-pkgver=5.0.40.r7.geb4e40b
+pkgver=5.0.40.r10.gd912073
 pkgrel=1
 pkgdesc='Qt platform plugins for DDE'
 arch=('x86_64')
@@ -12,8 +12,11 @@ conflicts=('deepin-qt5platform-plugins')
 depends=('cairo' 'kwayland' 'qt5-wayland' 'qt5-x11extras')
 makedepends=('git' 'expac' 'qt5-xcb-private-headers' 'libglvnd' 'libxcb')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/qt5platform-plugins")
-sha512sums=('SKIP')
+source=("$pkgname::git://github.com/linuxdeepin/qt5platform-plugins"
+        "fix-qxcbwindow.patch"
+       )
+sha512sums=('SKIP'
+            '78a34278fe4d21bfedcfb5e30d074467c4898a28581de2492c62e0f61a2e7d8183c351528c0c94f347673629787cd10d843a664458b834ddef9928fa51000272')
 
 pkgver() {
     cd $pkgname
@@ -22,6 +25,8 @@ pkgver() {
 
 prepare() {
   cd $pkgname
+
+  patch -p1 -i ../fix-qxcbwindow.patch
 
   rm -r xcb/libqt5xcbqpa-dev wayland/qtwayland-dev
   # Disable wayland for now: https://github.com/linuxdeepin/qt5platform-plugins/issues/47

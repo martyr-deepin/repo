@@ -1,0 +1,22 @@
+diff --git a/xcb/windoweventhook.cpp b/xcb/windoweventhook.cpp
+index 7c94fd5..0959522 100644
+--- a/xcb/windoweventhook.cpp
++++ b/xcb/windoweventhook.cpp
+@@ -65,7 +65,7 @@ void WindowEventHook::init(QXcbWindow *window, bool redirectContent)
+         VtableHook::overrideVfptrFun(window, &QXcbWindow::handleXIEnterLeave,
+                                      &WindowEventHook::handleXIEnterLeave);
+ #endif
+-        VtableHook::overrideVfptrFun(window, &QPlatformWindow::windowEvent,
++        VtableHook::overrideVfptrFun(window, &QXcbWindow::windowEvent,
+                                      &WindowEventHook::windowEvent);
+     }
+ 
+@@ -562,7 +562,7 @@ void WindowEventHook::handleXIEnterLeave(QXcbWindow *window, xcb_ge_event_t *eve
+ 
+ void WindowEventHook::windowEvent(QPlatformWindow *window, QEvent *event)
+ #else
+-bool WindowEventHook::windowEvent(QPlatformWindow *window, QEvent *event)
++bool WindowEventHook::windowEvent(QXcbWindow *window, QEvent *event)
+ #endif
+ {
+     switch (event->type()) {
