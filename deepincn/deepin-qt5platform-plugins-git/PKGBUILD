@@ -12,11 +12,8 @@ conflicts=('deepin-qt5platform-plugins')
 depends=('cairo' 'kwayland' 'qt5-wayland' 'qt5-x11extras')
 makedepends=('git' 'expac' 'qt5-xcb-private-headers' 'libglvnd' 'libxcb')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/qt5platform-plugins"
-        "fix-qxcbwindow.patch"
-       )
-sha512sums=('SKIP'
-            '78a34278fe4d21bfedcfb5e30d074467c4898a28581de2492c62e0f61a2e7d8183c351528c0c94f347673629787cd10d843a664458b834ddef9928fa51000272')
+source=("$pkgname::git://github.com/linuxdeepin/qt5platform-plugins")
+sha512sums=('SKIP')
 
 pkgver() {
     cd $pkgname
@@ -25,8 +22,6 @@ pkgver() {
 
 prepare() {
   cd $pkgname
-
-  patch -p1 -i ../fix-qxcbwindow.patch
 }
 
 build() {
