@@ -2,7 +2,7 @@
 
 pkgname=dtkcommon-git
 pkgver=5.5.17.r6.g274d009
-pkgrel=2
+pkgrel=3
 pkgdesc='DTK common modules'
 arch=('x86_64')
 url="https://github.com/linuxdeepin/dtkcommon"
