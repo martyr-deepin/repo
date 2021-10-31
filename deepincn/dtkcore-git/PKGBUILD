@@ -1,7 +1,7 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
 pkgname=dtkcore-git
-pkgver=5.5.17.1.r30.gf27c8c1
+pkgver=5.5.17.1.r32.g09ffc01
 pkgrel=1
 pkgdesc='DTK core modules'
 arch=('x86_64')
