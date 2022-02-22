@@ -42,9 +42,6 @@ package() {
   # Make a symlink for deepin-version
   ln -s ../usr/lib/deepin/desktop-version "$pkgdir"/etc/deepin-version
 
-  # Remove UOS logo
-  rm "$pkgdir"/usr/share/deepin/uos_logo.svg
-
   # Remove apt-specific templates
   rm -r "$pkgdir"/usr/share/python-apt
 }
