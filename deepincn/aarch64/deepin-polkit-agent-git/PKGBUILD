@@ -35,5 +35,5 @@ build() {
 
 package() {
   cd $pkgname
-  ninja INSTALL_ROOT="$pkgdir" install
+  DESTDIR="$pkgdir" ninja install
 }
