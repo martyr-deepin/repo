@@ -4,7 +4,7 @@ maintainers:
   - github: justforlxz
     email: justforlxz@gmail.com
 
-build_prefix: extra-x86_64
+build_prefix: extra-aarch64
 
 pre_build_script: aur_pre_build(maintainers='justforlxz')
 
@@ -12,6 +12,6 @@ post_build: aur_post_build
 
 update_on:
   - source: github
-    github: linuxdeepin/deepin-desktop-base
+    github: linuxdeepin/deepin-wallpapers
   - source: aur
-    aur: deepin-desktop-base-git
+    aur: deepin-wallpapers-git
