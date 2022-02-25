@@ -1,0 +1,6 @@
+#!/bin/bash
+
+_PWD=$PWD
+
+rm -rf *.sig
+gpg --detach-sign *.zst || gpg --detach-sign *.xz || exit 1

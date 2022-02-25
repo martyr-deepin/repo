@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp -f *.sig ~/deepincn/git/os/aarch64/ || exit 2
+cp -f *.zst ~/deepincn/git/os/aarch64/ || cp -f *.xz  ~/deepincn/git/os/aarch64/ || exit 1

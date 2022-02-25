@@ -1,0 +1,3 @@
+#!/bin/bash
+
+archlinuxcn-aarch64-build -c -r ~/CHROOT/$1 && sign-package && copy-package && rsync-package 

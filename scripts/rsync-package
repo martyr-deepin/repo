@@ -1,0 +1,10 @@
+#!/bin/bash
+
+package=($(ls | grep -i "zst$") $(ls | grep -i "xz$"))
+
+cd ~/deepincn/git/os/aarch64
+
+for zst in $package
+do
+    repo-add -R git.db.tar.xz $zst || exit 1
+done
