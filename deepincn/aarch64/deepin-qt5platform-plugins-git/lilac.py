@@ -16,4 +16,7 @@ from lilaclib import *
 import platform
 
 def build_prefix():
-    print("extra-{}".format(platform.machine()))
+    return "extra-{}".format(platform.machine())
+
+if __name__ == '__main__':
+    single_main(build_prefix)
