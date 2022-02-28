@@ -7,6 +7,7 @@ pkgdesc='Account faces for Linux Deepin'
 arch=('any')
 license=('GPL3')
 url="https://github.com/linuxdeepin/dde-account-faces"
+makedepends=('git')
 conflicts=('dde-account-faces')
 replaces=('dde-account-faces')
 group=('deepin-git')
