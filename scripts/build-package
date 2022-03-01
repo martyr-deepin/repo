@@ -1,3 +1,6 @@
 #!/bin/bash
 
-archlinuxcn-$(uname -m)-build -c -r ~/CHROOT/$1 && sign-package && copy-package && rsync-package 
+archlinuxcn-$(uname -m)-build -r /data/$1 || archlinuxcn-$(uname -m)-build -c -r /data/$1 || exit 1
+sign-package || exit 1
+copy-package || exit 1
+rsync-package || exit 1
