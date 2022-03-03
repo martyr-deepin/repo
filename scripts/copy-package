@@ -1,4 +1,17 @@
 #!/bin/bash
 
+pkgs=($(source PKGBUILD && echo ${pkgname[*]}))
+
+for zst in ${pkgs[*]}
+do
+    flock /tmp/git.db.lck repo-remove git.db.tar.xz $zst
+done
+
+for zst in ${pkgs[*]}
+do
+    $(cd ~/deepincn/git/os/$(uname -m)/)
+    rm -rf ~/deepincn/git/os/$(uname -m)/$zst*
+done
+
 cp -f *.sig ~/deepincn/git/os/$(uname -m)/ || exit 2
 cp -f *.zst ~/deepincn/git/os/$(uname -m)/ || cp -f *.xz  ~/deepincn/git/os/$(uname -m)/ || exit 1

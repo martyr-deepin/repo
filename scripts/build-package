@@ -1,6 +1,12 @@
 #!/bin/bash
 
-archlinuxcn-$(uname -m)-build -r /data/$1 || archlinuxcn-$(uname -m)-build -c -r /data/$1 || exit 1
-sign-package || exit 1
-copy-package || exit 1
-rsync-package || exit 1
+_oldVer=$(source PKGBUILD && echo $pkgver)
+makepkg -o -d
+_newVer=$(source PKGBUILD && echo $pkgver)
+
+if [ "$_oldVer" != "$_newVer" ]; then
+    archlinuxcn-$(uname -m)-build -r /data/$1 || archlinuxcn-$(uname -m)-build -c -r /data/$1 || exit 1
+    sign-package || exit 1
+    copy-package || exit 1
+    rsync-package || exit 1
+fi

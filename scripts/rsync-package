@@ -4,7 +4,7 @@ package=($(ls | grep -i "zst$") $(ls | grep -i "xz$"))
 
 cd ~/deepincn/git/os/$(uname -m)
 
-for zst in $package
+for zst in ${package[*]}
 do
     flock /tmp/git.db.lck repo-add -R git.db.tar.xz $zst || exit 1
 done
