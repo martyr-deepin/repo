@@ -4,12 +4,11 @@ pkgs=($(source PKGBUILD && echo ${pkgname[*]}))
 
 for zst in ${pkgs[*]}
 do
-    flock /tmp/git.db.lck repo-remove git.db.tar.xz $zst
+    flock /tmp/git.db.lck repo-remove ~/deepincn/git/os/$(uname -m)/git.db.tar.xz $zst
 done
 
 for zst in ${pkgs[*]}
 do
-    $(cd ~/deepincn/git/os/$(uname -m)/)
     rm -rf ~/deepincn/git/os/$(uname -m)/$zst*
 done
 
