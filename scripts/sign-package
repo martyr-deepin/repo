@@ -1,6 +1,9 @@
 #!/bin/bash
 
-_PWD=$PWD
-
 rm -rf *.sig
-gpg --detach-sign *.zst || gpg --detach-sign *.xz || exit 1
+package=($(ls | grep -i "zst$") $(ls | grep -i "xz$"))
+
+for p in ${package[*]}
+do
+    gpg --detach-sign $p || exit 1
+done
