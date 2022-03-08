@@ -1,0 +1,13 @@
+#!/bin/bash
+
+basepkg=$(source PKGBUILD && echo $url | awk -F/ '{print $NF}')
+
+rm -rf .${basepkg}
+
+git clone https://github.com/linuxdeepin/${basepkg} .${basepkg}
+
+lasttag=$(cd .${basepkg} && git describe --abbrev=0)
+
+sed -i "/^pkgver/c pkgver=${lasttag}" PKGBUILD
+
+rm -rf .${basepkg}
