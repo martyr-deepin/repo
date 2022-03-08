@@ -15,12 +15,12 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-qt-dbus-fac
 sha512sums=('SKIP')
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   qmake-qt5 PREFIX=/usr
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make INSTALL_ROOT="$pkgdir" install
 }

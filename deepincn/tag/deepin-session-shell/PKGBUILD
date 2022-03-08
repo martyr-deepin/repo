@@ -14,18 +14,18 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-session-she
 sha512sums=('SKIP')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   sed -i 's/5\.5//g' CMakeLists.txt tests/lightdm-deepin-greeter/CMakeLists.txt tests/dde-lock/CMakeLists.txt
 }
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr
   ninja
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   DESTDIR="$pkgdir" ninja install
 
   chmod +x "$pkgdir"/usr/bin/deepin-greeter

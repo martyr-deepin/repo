@@ -31,7 +31,7 @@ sha512sums=('SKIP'
             '808c02d4fec4cbbb01119bbb10499090199e738b7dd72c28a57dde098eef6132723f3434c151f79e21d9f788c7f7bae8046573ac93ba917afe0e803fbffa6d5a')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   patch -p1 -i ../remove-tc.patch
   patch -p1 -i ../dde-daemon.patch
   rm -rf system/uadp
@@ -61,13 +61,13 @@ build() {
   export CGO_LDFLAGS="${LDFLAGS}"
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
 #  make -C network/nm_generator gen-nm-code
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" PAM_MODULE_DIR=usr/lib/security install
 
   mv "$pkgdir"{,/usr}/lib/systemd

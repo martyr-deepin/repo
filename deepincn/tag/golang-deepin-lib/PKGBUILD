@@ -18,7 +18,7 @@ sha512sums=('SKIP')
 
 prepare() {
   export GO111MODULE=off
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   sed -i 's/int connect_timeout;/extern int connect_timeout;/' pulse/dde-pulse.h
 }
 

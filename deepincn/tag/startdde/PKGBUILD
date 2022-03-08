@@ -34,12 +34,12 @@ prepare() {
 
 build() {
   export GOFLAGS="-mod=readonly -modcacherw"
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" install
 
   # Fix env file permission

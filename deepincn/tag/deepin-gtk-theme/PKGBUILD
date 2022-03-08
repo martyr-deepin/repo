@@ -18,6 +18,6 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/deepin-gtk-them
 sha512sums=('SKIP')
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" install
 }

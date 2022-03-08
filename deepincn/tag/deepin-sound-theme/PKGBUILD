@@ -13,11 +13,11 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/deepin-sound-th
 sha512sums=('SKIP')
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make PREFIX=/usr DESTDIR="$pkgdir" install
 }

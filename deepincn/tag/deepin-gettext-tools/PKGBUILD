@@ -14,20 +14,20 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/deepin-gettext-
 sha512sums=('SKIP')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
 
   sed -e 's/sudo cp/cp/' -i src/generate_mo.py
   sed -e 's/qmake/qmake-qt5/' -e '/lupdate/d' -i Makefile
 }
 
 check() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   perl src/desktop_ts_convert.pl --help
   python src/generate_mo.py --help
   python src/update_pot.py --help
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" install
 }

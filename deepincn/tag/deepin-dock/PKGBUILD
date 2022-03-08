@@ -15,12 +15,12 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-dock/archiv
 sha512sums=('SKIP')
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DDOCK_TRAY_USE_NATIVE_POPUP=YES
   ninja
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   DESTDIR="$pkgdir" ninja install
 }

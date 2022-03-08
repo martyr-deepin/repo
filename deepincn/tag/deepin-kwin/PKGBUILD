@@ -21,7 +21,7 @@ sha512sums=('SKIP'
             '625113af4b4fe00b82b18c6697c2f2b23366774a820e0a83c33818846611c972dde079e5422cda92111c561d064f3767177aaa9258dd805704dbc7bb5361dab9')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   sed -i 's|/usr/share/backgrounds/default_background.jpg|/usr/share/backgrounds/deepin/desktop.jpg|' plugins/kwineffects/multitasking/background.cpp
   patch -R -p1 -i ../added-functions-from-their-forked-kwin.patch
   patch -p1 -i ../tabbox-chameleon-rename.patch
@@ -30,13 +30,13 @@ prepare() {
 }
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DKWIN_VERSION=$(expac %v kwin | cut -d - -f 1)
   ninja
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   DESTDIR="$pkgdir" ninja install
 
   chmod +x "$pkgdir"/usr/bin/kwin_no_scale

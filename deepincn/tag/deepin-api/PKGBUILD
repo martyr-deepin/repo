@@ -50,12 +50,12 @@ prepare() {
 build(){
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
   export GO111MODULE=off
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" SYSTEMD_LIB_DIR=/usr/lib install
 
   install -Dm644 ../deepin-api.sysusers "$pkgdir"/usr/lib/sysusers.d/deepin-api.conf

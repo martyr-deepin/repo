@@ -14,7 +14,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/qt5platform-plu
 sha512sums=('SKIP')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
 
   rm -r xcb/libqt5xcbqpa-dev wayland/qtwayland-dev
   # Disable wayland for now: https://github.com/linuxdeepin/qt5platform-plugins/issues/47
@@ -28,12 +28,12 @@ prepare() {
 }
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   qmake-qt5 PREFIX=/usr
   make
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make INSTALL_ROOT="$pkgdir" install
 }

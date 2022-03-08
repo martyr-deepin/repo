@@ -15,7 +15,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/go-gir-generato
 sha512sums=('SKIP')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   mkdir -p "$srcdir"/build/src/github.com/linuxdeepin/
 
   # Should be fixed upstream
@@ -29,7 +29,7 @@ build() {
   export GOPATH="$srcdir/build:/usr/share/gocode"
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
   export GO111MODULE=off
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   rm -r gogtk-demo
   make
 

@@ -13,6 +13,6 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-account-fac
 sha512sums=('SKIP')
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" install
 }

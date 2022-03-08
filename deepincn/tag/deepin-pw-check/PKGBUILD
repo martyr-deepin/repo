@@ -14,7 +14,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/deepin-pw-check
 sha512sums=('SKIP')
 
 prepare() {
-    cd $pkgname-$pkgver
+    cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
     export GOPATH="$srcdir/build:/usr/share/gocode"
     export GO111MODULE=off
     go get -v github.com/godbus/dbus
@@ -26,7 +26,7 @@ prepare() {
 }
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   export CGO_CPPFLAGS="${CPPFLAGS}"
   export CGO_CFLAGS="${CFLAGS}"
   export CGO_CXXFLAGS="${CXXFLAGS}"
@@ -36,6 +36,6 @@ build() {
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   make DESTDIR="$pkgdir" install
 }

@@ -14,12 +14,12 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-launcher/ar
 sha512sums=('SKIP')
 
 build() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITHOUT_UNINSTALL_APP=
   ninja
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   DESTDIR="$pkgdir" ninja install
 }

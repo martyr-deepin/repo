@@ -16,7 +16,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/go-x11-client/a
 sha512sums=('SKIP')
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   rm -rf tools
 }
 

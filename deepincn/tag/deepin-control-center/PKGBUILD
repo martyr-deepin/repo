@@ -35,7 +35,7 @@ prepare() {
 
   rm $pkgname/src/frame/window/icons/icons/dcc_nav_systeminfo_{42,84}px.svg
   patch -d $pkgname -Np1 < $_pkgname-systeminfo-deepin-icon.patch
-  cd $pkgname-$pkgver
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver
   patch -p1 -i ../remove-auth.patch
 
   # remove after they obey -DDISABLE_SYS_UPDATE properly
@@ -44,13 +44,13 @@ prepare() {
 
 build() {
   mkdir -p $pkgname/build
-  cd $pkgname-$pkgver/build
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver/build
   cmake -GNinja -DDISABLE_SYS_UPDATE=YES -DDISABLE_RECOVERY=YES -DDISABLE_ACTIVATOR=YES -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib \
     ../
   ninja
 }
 
 package() {
-  cd $pkgname-$pkgver/build
+  cd $(echo $url | awk -F/ '{print $NF}')-$pkgver/build
   DESTDIR="$pkgdir" ninja install
 }
