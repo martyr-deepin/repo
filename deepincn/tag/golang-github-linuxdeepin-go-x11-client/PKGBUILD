@@ -1,0 +1,38 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=golanghub-linuxdeepin-go-x11-client
+deepin=go-x11-client
+pkgver=0.6.8
+pkgrel=1
+pkgdesc='X11 protocol go language binding'
+arch=('any')
+url="https://github.com/linuxdeepin/go-x11-client"
+license=('GPL')
+groups=('deepin')
+depends=('golang-golang-x-text')
+makedepends=('git' 'go' 'xorg-server-xvfb' 'golanghub-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2')
+checkdepends=('xorg-server-xvfb' 'golanghub-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2' 'git')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/go-x11-client/archive/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+prepare() {
+  cd $pkgname-$pkgver
+  rm -rf tools
+}
+
+check() {
+  export GOPATH="$srcdir/build:/usr/share/gocode"
+  export GO111MODULE=off
+  mkdir -p "$srcdir"/build/src/github.com/linuxdeepin
+  cp -a "$srcdir/$pkgname" "$srcdir"/build/src/github.com/linuxdeepin/go-x11-client
+  cd "$srcdir"/build/src/github.com/linuxdeepin/go-x11-client
+  go get gopkg.in/yaml.v3
+  xvfb-run go test -v $(go list ./...)
+}
+
+package() {
+  mkdir -p "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin
+  cp -a "$srcdir/$pkgname" "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-x11-client
+
+  rm -r "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-x11-client/debian
+}

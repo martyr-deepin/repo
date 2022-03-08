@@ -1,0 +1,25 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=dtkgui
+pkgver=5.2.2.4
+pkgrel=1
+pkgdesc='Deepin Toolkit, gui module for DDE look and feel'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/dtkgui"
+license=('LGPL3')
+depends=('dtkcore' 'librsvg' 'qt5-x11extras')
+makedepends=('git' 'qt5-tools' 'dtkcore' 'librsvg' 'qt5-x11extras' 'gtest' 'gmock')
+groups=('deepin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dtkgui/archive/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd $pkgname-$pkgver
+  qmake-qt5 PREFIX=/usr DTK_VERSION=$pkgver LIB_INSTALL_DIR=/usr/lib
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make INSTALL_ROOT="$pkgdir" install
+}

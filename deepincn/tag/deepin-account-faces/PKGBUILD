@@ -1,0 +1,18 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=deepin-account-faces
+pkgver=1.0.11
+pkgrel=1
+pkgdesc='Account faces for Linux Deepin'
+arch=('any')
+license=('GPL3')
+url="https://github.com/linuxdeepin/dde-account-faces"
+makedepends=('git')
+group=('deepin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-account-faces/archive/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}

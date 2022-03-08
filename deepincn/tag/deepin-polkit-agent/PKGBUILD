@@ -1,0 +1,32 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=deepin-polkit-agent
+pkgver=5.5.3
+pkgrel=1
+pkgdesc='Deepin Polkit Agent'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/dde-polkit-agent"
+license=('GPL3')
+depends=('deepin-qt-dbus-factory' 'startdde' 'polkit-qt5' 'dtkwidget')
+makedepends=('git' 'polkit-qt5' 'dtkcommon' 'dtkwidget' 'cmake' 'ninja')
+groups=('deepin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-polkit-agent/archive/$pkgver.tar.gz"
+        "fix.patch")
+sha512sums=('SKIP'
+            'b02235cece90a01942cd0898cfb85c7eb8fa6f980c4e1d83cfa115baba1599ca878788b5d89338444afe8267c30b11f9279ebda98d3bbc3dd4f3fe03cd1f0572')
+
+prepare() {
+  cd $pkgname-$pkgver
+  patch -p1 -i ../fix.patch
+}
+
+build() {
+  cd $pkgname-$pkgver
+  cmake . -G Ninja -DCMAKE_INSTALL_PREFIX=/usr
+  ninja
+}
+
+package() {
+  cd $pkgname-$pkgver
+  DESTDIR="$pkgdir" ninja install
+}

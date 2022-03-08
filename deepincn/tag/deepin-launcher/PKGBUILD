@@ -1,0 +1,25 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=deepin-launcher
+pkgver=5.5.6
+pkgrel=1
+pkgdesc='Deepin desktop-environment - Launcher module'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/dde-launcher"
+license=('GPL3')
+depends=('gsettings-qt' 'qt5-svg' 'qt5-x11extras' 'startdde' 'deepin-daemon' 'deepin-qt-dbus-factory' 'xdg-user-dirs')
+makedepends=('git' 'cmake' 'ninja' 'gtest' 'qt5-tools' 'qt5-base' 'qt5-x11extras' 'qt5-svg' 'dtkwidget' 'gtest' 'gmock')
+groups=('deepin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-launcher/archive/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd $pkgname-$pkgver
+  cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DWITHOUT_UNINSTALL_APP=
+  ninja
+}
+
+package() {
+  cd $pkgname-$pkgver
+  DESTDIR="$pkgdir" ninja install
+}

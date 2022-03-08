@@ -1,0 +1,25 @@
+# Maintainer: DingYuan Zhang <justforlxz@gmail.com>
+
+pkgname=deepin-turbo
+pkgver=0.0.5
+pkgrel=1
+pkgdesc='A daemon that helps to launch applications faster'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/deepin-turbo"
+license=('GPL3')
+depends=('qt5-base')
+makedepends=('cmake' 'git')
+groups=('deepin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/deepin-turbo/archive/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd $pkgname-$pkgver
+  cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release .
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+}
