@@ -2,7 +2,7 @@
 
 package=($(ls | grep -i "zst$") $(ls | grep -i "xz$"))
 
-cd ~/deepincn/git/os/$(uname -m)
+cd ~/deepincn/${repo}/os/$(uname -m)
 
 for zst in ${package[*]}
 do

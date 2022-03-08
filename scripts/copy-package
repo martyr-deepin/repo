@@ -4,13 +4,13 @@ pkgs=($(source PKGBUILD && echo ${pkgname[*]}))
 
 for zst in ${pkgs[*]}
 do
-    flock /tmp/git.db.lck repo-remove ~/deepincn/git/os/$(uname -m)/git.db.tar.xz $zst
+    flock /tmp/git.db.lck repo-remove ~/deepincn/${repo}/os/$(uname -m)/git.db.tar.xz $zst
 done
 
 for zst in ${pkgs[*]}
 do
-    rm -rf ~/deepincn/git/os/$(uname -m)/$zst*
+    rm -rf ~/deepincn/${repo}/os/$(uname -m)/$zst*
 done
 
-cp -f *.sig ~/deepincn/git/os/$(uname -m)/ || exit 2
-cp -f *.zst ~/deepincn/git/os/$(uname -m)/ || cp -f *.xz  ~/deepincn/git/os/$(uname -m)/ || exit 1
+cp -f *.sig ~/deepincn/${repo}/os/$(uname -m)/ || exit 2
+cp -f *.zst ~/deepincn/${repo}/os/$(uname -m)/ || cp -f *.xz  ~/deepincn/${repo}/os/$(uname -m)/ || exit 1
