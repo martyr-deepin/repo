@@ -6,5 +6,5 @@ cd ~/deepincn/$1/os/$(uname -m)
 
 for zst in ${package[*]}
 do
-    flock /tmp/git.db.lck repo-add -R git.db.tar.xz $zst || exit 1
+    flock /tmp/git.db.lck repo-add -R deepincn.db.tar.xz $zst || exit 1
 done
