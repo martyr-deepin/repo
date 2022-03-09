@@ -42,7 +42,7 @@ check() {
   cd "$srcdir"/build/src/github.com/linuxdeepin/go-gir
   go test -v $(go list ./...)
 
-  cd "$srcdir/$pkgname"
+  cd "$srcdir/"$(echo $url | awk -F/ '{print $NF}')-$pkgver
   go run test/memory.go
 }
 
