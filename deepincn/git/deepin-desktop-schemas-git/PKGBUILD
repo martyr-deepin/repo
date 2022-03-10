@@ -21,6 +21,13 @@ pkgver() {
 }
 
 prepare() {
+    cd $pkgname
+    if [[ ! -z ${sha} ]];then
+      git checkout -b $sha
+    fi
+}
+
+prepare() {
   export GOPATH="$srcdir/build:/usr/share/gocode"
   cd $pkgname
   # fix default background url

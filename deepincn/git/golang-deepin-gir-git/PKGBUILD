@@ -23,6 +23,10 @@ pkgver() {
 
 prepare() {
   cd $pkgname
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
+
   mkdir -p "$srcdir"/build/src/github.com/linuxdeepin/
 
   # Should be fixed upstream

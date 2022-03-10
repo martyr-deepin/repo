@@ -22,6 +22,9 @@ pkgver() {
 
 prepare() {
   cd $pkgname
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
 
   rm -r xcb/libqt5xcbqpa-dev wayland/qtwayland-dev
   # Disable wayland for now: https://github.com/linuxdeepin/qt5platform-plugins/issues/47

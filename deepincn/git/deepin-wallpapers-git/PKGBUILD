@@ -24,7 +24,11 @@ pkgver() {
 }
 
 prepare() {
-  cd $pkgbase
+  cd $pkgname
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
+
   cp -a "$srcdir"/$pkgbase{,-community}
 }
 

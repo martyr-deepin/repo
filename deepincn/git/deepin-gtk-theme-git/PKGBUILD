@@ -1,11 +1,7 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
-# Maintainer: Felix Yan <felixonmars@archlinux.org>
-# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
-# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
-
 pkgname=deepin-gtk-theme-git
-pkgver=2020.06.10.r5.gfcfd181
+pkgver=2020.06.10.r12.g3cd9a6d
 pkgrel=1
 pkgdesc="Deepin GTK Theme"
 arch=('any')
@@ -20,6 +16,13 @@ sha512sums=('SKIP')
 pkgver() {
     cd $pkgname
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+    cd $pkgname
+    if [[ ! -z ${sha} ]];then
+      git checkout -b $sha
+    fi
 }
 
 package() {

@@ -26,6 +26,10 @@ pkgver() {
 prepare() {
   export GO111MODULE=off
   cd $pkgname
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
+
   sed -i 's/int connect_timeout;/extern int connect_timeout;/' pulse/dde-pulse.h
 }
 

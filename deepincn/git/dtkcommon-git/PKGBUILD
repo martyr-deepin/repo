@@ -21,6 +21,13 @@ pkgver() {
     sed -i 's/qt5/qt/g' dtkcommon.pro
 }
 
+prepare() {
+    cd $pkgname
+    if [[ ! -z ${sha} ]];then
+      git checkout -b $sha
+    fi
+}
+
 build() {
   cd $pkgname
   qmake-qt5 PREFIX=/usr DTK_VERSION=$pkgver LIB_INSTALL_DIR=/usr/lib

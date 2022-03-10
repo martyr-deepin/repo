@@ -23,6 +23,10 @@ pkgver() {
 prepare() {
   cd $pkgname
 
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
+
   sed -e 's/sudo cp/cp/' -i src/generate_mo.py
   sed -e 's/qmake/qmake-qt5/' -e '/lupdate/d' -i Makefile
 }

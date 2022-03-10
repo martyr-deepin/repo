@@ -28,7 +28,11 @@ pkgver() {
 }
 
 prepare() {
-    cd ${pkgname}
+    cd $pkgname
+    if [[ ! -z ${sha} ]];then
+      git checkout -b $sha
+    fi
+
     sed -i '/#include <QException>/a #include <QPainterPath>' src/dialogs/dfmtaskwidget.cpp
     sed -i '/#include <QTimer>/a #include <QPainterPath>' src/dde-file-manager-lib/interfaces/dfmglobal.cpp
     sed -i '/#include <QPainter>/a #include <QPainterPath>' src/dde-file-manager-lib/interfaces/{dlistitemdelegate,dfmstyleditemdelegate,diconitemdelegate}.cpp src/dde-file-manager-lib/dialogs/openwithdialog.cpp

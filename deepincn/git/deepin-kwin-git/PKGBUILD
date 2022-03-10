@@ -27,6 +27,10 @@ pkgver() {
 
 prepare() {
   cd $pkgname
+  if [[ ! -z ${sha} ]];then
+    git checkout -b $sha
+  fi
+
   sed -i 's|/usr/share/backgrounds/default_background.jpg|/usr/share/backgrounds/deepin/desktop.jpg|' plugins/kwineffects/multitasking/background.cpp
   patch -R -p1 -i ../added-functions-from-their-forked-kwin.patch
   patch -p1 -i ../tabbox-chameleon-rename.patch
