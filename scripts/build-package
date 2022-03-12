@@ -5,7 +5,7 @@
 # $3 arch name
 # $4 pacman config
 
-extra-${3}-build -- -C $4 || extra-${3}-build -c -- -C $4 exit 1
+extra-${3}-build -- -C $4 || extra-${3}-build -c -- -C $4 || exit 1
 sign-package $2 $3 || exit 1
 copy-package $2 $3 || exit 1
 rsync-package $2 $3 || exit 1
