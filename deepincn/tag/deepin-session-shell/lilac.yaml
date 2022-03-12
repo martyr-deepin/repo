@@ -16,8 +16,8 @@ repo_depends:
   - deepin-gettext-tools
   - golang-deepin-gir
   - golang-deepin-lib
-  - golanghub-linuxdeepin-go-dbus-factory
-  - golanghub-linuxdeepin-go-x11-client
+  - golang-github-linuxdeepin-go-dbus-factory
+  - golang-github-linuxdeepin-go-x11-client
   - deepin-api
   - deepin-daemon
 update_on:

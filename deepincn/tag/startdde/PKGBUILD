@@ -8,9 +8,9 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/linuxdeepin/startdde"
 license=('GPL3')
 depends=('libgnome-keyring')
-makedepends=('cmake' 'coffeescript' 'golanghub-linuxdeepin-go-dbus-factory' 'golang-deepin-gir'
+makedepends=('cmake' 'coffeescript' 'golang-github-linuxdeepin-go-dbus-factory' 'golang-deepin-gir'
              'golang-deepin-lib' 'deepin-api' 'go' 'git' 'jq'
-             'golang-golang-x-net' 'golanghub-linuxdeepin-go-x11-client')
+             'golang-golang-x-net' 'golang-github-linuxdeepin-go-x11-client')
 optdepends=('deepin-wm: Legacy 3D window manager'
             'deepin-metacity: Legacy 2D window manager'
             'deepin-kwin: Preferred window manager')

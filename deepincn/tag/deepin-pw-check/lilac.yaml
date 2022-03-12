@@ -10,7 +10,7 @@ repo_depends:
   - deepin-gettext-tools
   - golang-deepin-gir
   - golang-deepin-lib
-  - golanghub-linuxdeepin-go-dbus-factory
+  - golang-github-linuxdeepin-go-dbus-factory
 update_on:
   - source: github
     github: linuxdeepin/deepin-pw-check

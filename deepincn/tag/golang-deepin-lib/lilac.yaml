@@ -8,7 +8,7 @@ build_prefix : 'extra-aarch64'
 post_build: aur_post_build
 repo_depends:
   - golang-deepin-gir
-  - golanghub-linuxdeepin-go-x11-client
+  - golang-github-linuxdeepin-go-x11-client
 update_on:
   - source: github
     github: linuxdeepin/go-lib

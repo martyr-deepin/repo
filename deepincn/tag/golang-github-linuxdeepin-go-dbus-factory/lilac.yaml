@@ -9,9 +9,9 @@ post_build: aur_post_build
 repo_depends:
   - golang-deepin-lib
   - golang-deepin-gir
-  - golanghub-linuxdeepin-go-x11-client
+  - golang-github-linuxdeepin-go-x11-client
 update_on:
   - source: github
     github: linuxdeepin/go-dbus-factory
   - source: aur
-    aur: golanghub-linuxdeepin-go-dbus-factory
+    aur: golang-github-linuxdeepin-go-dbus-factory

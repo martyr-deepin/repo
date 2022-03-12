@@ -15,8 +15,8 @@ license=('GPL3')
 depends=('alsa-utils' 'bc' 'fontconfig' 'glib2' 'gdk-pixbuf2' 'gtk3' 'libcanberra-pulse' 'librsvg'
          'libxi' 'libxfixes' 'poppler-glib' 'util-linux' 'xcur2png' 'blur-effect')
 makedepends=('git' 'deepin-gettext-tools' 'golang-deepin-gir' 'golang-deepin-lib'
-             'golanghub-linuxdeepin-go-dbus-factory' 'golanghub-linuxdeepin-go-x11-client'
-             'golanghub-nfnt-resize' 'bzr' 'go-pie')
+             'golang-github-linuxdeepin-go-dbus-factory' 'golang-github-linuxdeepin-go-x11-client'
+             'golang-github-nfnt-resize' 'bzr' 'go-pie')
 groups=('deepin')
 install=deepin-api.install
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/dde-api/archive/$pkgver.tar.gz"

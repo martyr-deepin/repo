@@ -12,8 +12,8 @@ depends=('deepin-desktop-schemas' 'ddcutil' 'deepin-api' 'gvfs' 'iso-codes' 'lsb
          'deepin-polkit-agent-ext-gnomekeyring' 'udisks2' 'upower'
          'libxkbfile' 'accountsservice' 'deepin-desktop-base' 'bamf' 'pulseaudio'
          'org.freedesktop.secrets' 'noto-fonts' 'imwheel')
-makedepends=('golanghub-linuxdeepin-go-dbus-factory' 'golang-deepin-gir' 'golang-deepin-lib'
-             'deepin-api' 'golanghub-nfnt-resize' 'golang-gopkg-yaml.v2' 'sqlite' 'deepin-gettext-tools'
+makedepends=('golang-github-linuxdeepin-go-dbus-factory' 'golang-deepin-gir' 'golang-deepin-lib'
+             'deepin-api' 'golang-github-nfnt-resize' 'golang-gopkg-yaml.v2' 'sqlite' 'deepin-gettext-tools'
              'git' 'mercurial' 'python-gobject' 'networkmanager' 'bluez' 'go')
 optdepends=('networkmanager: for network management support'
             'bluez: for bluetooth support'

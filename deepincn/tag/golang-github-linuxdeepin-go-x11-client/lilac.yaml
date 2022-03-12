@@ -9,4 +9,4 @@ update_on:
   - source: github
     github: linuxdeepin/go-x11-client
   - source: aur
-    aur: golanghub-linuxdeepin-go-x11-client
+    aur: golang-github-linuxdeepin-go-x11-client

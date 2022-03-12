@@ -1,6 +1,6 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
-pkgname=golanghub-linuxdeepin-go-x11-client
+pkgname=golang-github-linuxdeepin-go-x11-client
 deepin=go-x11-client
 pkgver=0.6.8
 pkgrel=1
@@ -10,8 +10,8 @@ url="https://github.com/linuxdeepin/go-x11-client"
 license=('GPL')
 groups=('deepin')
 depends=('golang-golang-x-text')
-makedepends=('git' 'go' 'xorg-server-xvfb' 'golanghub-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2')
-checkdepends=('xorg-server-xvfb' 'golanghub-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2' 'git')
+makedepends=('git' 'go' 'xorg-server-xvfb' 'golang-github-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2')
+checkdepends=('xorg-server-xvfb' 'golang-github-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2' 'git')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/linuxdeepin/go-x11-client/archive/$pkgver.tar.gz")
 sha512sums=('SKIP')
 
