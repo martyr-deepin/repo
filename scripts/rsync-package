@@ -1,10 +1,12 @@
 #!/bin/bash
 
+repo=$HOME/public_html/deepincn/$1/os/$2
+
 package=($(ls | grep -i "zst$") $(ls | grep -i "xz$"))
 
-cd ~/deepincn/$1/os/$(uname -m)
+cd $repo
 
 for zst in ${package[*]}
 do
-    flock /tmp/git.db.lck repo-add -R deepincn.db.tar.xz $zst || exit 1
+    flock $HOME/.cache/$1.db.lck repo-add -R deepincn.db.tar.xz $zst || exit 1
 done
