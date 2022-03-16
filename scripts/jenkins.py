@@ -6,17 +6,18 @@ import subprocess
 
 
 class Args:
-    dir = ''
-    sha = ''
-
+    def __init__(self, dir, sha):
+        self.dir = dir
+        self.sha = sha
 def updatePKGBUILD(args: Args):
     lines = []
     with open("{}/PKGBUILD".format(args.dir), 'r') as f:
         for line in f:
             lines.append(line)
-    lines.insert(5, 'sha={}'.format(args.sha))
+    lines = lines[:5] + ['sha={}\n'.format(args.sha)] + lines[5:]
     with open("{}/PKGBUILD".format(args.dir), 'w') as f:
-        f.write(lines)
+        for line in lines:
+            f.write(line)
 
 def build(args: Args):
     commands = [['deepincn-x86_64-build']]
@@ -24,7 +25,8 @@ def build(args: Args):
         subprocess.run(command, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding="utf-8", workingdir=args.dir)
 
 def main(argv):
-    args: Args = Args()
+    dir = ''
+    sha = ''
     try:
         opts, args = getopt.getopt(argv, "hd:s:", ["dir=", "sha="])
     except getopt.GetoptError:
@@ -35,10 +37,10 @@ def main(argv):
             print('jenkins.py -d <PKGBUILD dir> -s <sha of commit>')
             sys.exit()
         elif opt in ("-d", "--dir"):
-            args.dir = arg
+            dir = arg
         elif opt in ("-s", "--sha"):
-            args.sha = arg
-    return args
+            sha = arg
+    return Args(dir, sha)
 
 
 if __name__ == "__main__":
