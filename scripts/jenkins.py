@@ -37,7 +37,7 @@ def main(argv):
             print('jenkins.py -d <PKGBUILD dir> -s <sha of commit>')
             sys.exit()
         elif opt in ("-d", "--dir"):
-            dir = arg
+            dir = os.path.abspath(arg)
         elif opt in ("-s", "--sha"):
             sha = arg
     return Args(dir, sha)
