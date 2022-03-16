@@ -1,17 +1,15 @@
 #!/bin/bash
 
-repo=$HOME/public_html/deepincn/$1/os/$2
-pkgs=($(source PKGBUILD && echo ${pkgname[*]}))
+repo=$1
+name=$2
+db=$3
+
+cd $repo
+
+pkgs=($(find -name "${name}*.zst"))
 
 for zst in ${pkgs[*]}
 do
-    flock $HOME/.cache/$2.db.lck repo-remove ${repo}/deepincn.db.tar.xz $zst
+    cp $zst $db
+    $(cd $db && repo-add -R deepincn.db.tar.xz $(basename $zst))
 done
-
-for zst in ${pkgs[*]}
-do
-    rm -rf ${repo}/${zst}*
-done
-
-cp -f *.sig $repo || exit 2
-cp -f *.zst $repo || cp -f *.xz $repo || exit 1
