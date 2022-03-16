@@ -1,5 +1,6 @@
 #!/bin/python
 
+import os
 import sys
 import getopt
 import subprocess
@@ -22,7 +23,7 @@ def updatePKGBUILD(args: Args):
 def build(args: Args):
     commands = [['deepincn-x86_64-build']]
     for command in commands:
-        subprocess.run(command, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding="utf-8", workingdir=args.dir)
+        subprocess.run(command, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding="utf-8", cwd=args.dir)
 
 def main(argv):
     dir = ''
