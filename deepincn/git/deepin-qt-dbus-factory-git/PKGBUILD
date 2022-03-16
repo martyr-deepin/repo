@@ -13,7 +13,7 @@ makedepends=('git' 'dtkcore-git' 'python')
 conflicts=('deepin-qt-dbus-factory')
 provides=('deepin-qt-dbus-factory')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dde-qt-dbus-factory.git")
+source=("$pkgname::https://github.com/linuxdeepin/dde-qt-dbus-factory.git")
 sha512sums=('SKIP')
 
 pkgver() {

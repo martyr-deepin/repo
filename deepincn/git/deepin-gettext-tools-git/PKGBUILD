@@ -12,7 +12,7 @@ makedepends=('git')
 conflicts=('deepin-gettext-tools')
 provides=('deepin-gettext-tools')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/deepin-gettext-tools/")
+source=("$pkgname::https://github.com/linuxdeepin/deepin-gettext-tools/")
 sha512sums=('SKIP')
 
 pkgver() {

@@ -12,7 +12,7 @@ makedepends=('git' 'qt5-tools' 'gsettings-qt' 'gtest')
 conflicts=('deepin-network-utils')
 provides=('deepin-network-utils')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dde-network-utils.git")
+source=("$pkgname::https://github.com/linuxdeepin/dde-network-utils.git")
 sha512sums=('SKIP')
 
 pkgver() {

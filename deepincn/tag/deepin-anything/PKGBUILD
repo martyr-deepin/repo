@@ -10,7 +10,7 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/linuxdeepin/deepin-anything"
 license=('GPL3')
 makedepends=('git' 'dtkcore' 'udisks2-qt5')
-source=("$pkgbase::git://github.com/linuxdeepin/deepin-anything"
+source=("$pkgbase::https://github.com/linuxdeepin/deepin-anything"
         deepin-anything-server.sysusers)
 sha512sums=('SKIP'
             '0ff6a6de1fbfb0c33eaac511b989da321a9e43ece92708af88aee34ad1a05e55572713b1290bc2705d70b91dc7bec4fb4abd3dc664a0abe01de27d88bd9e9c85')

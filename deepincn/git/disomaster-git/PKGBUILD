@@ -12,7 +12,7 @@ makedepends=('git' 'qt5-tools')
 groups=('deepin-git')
 provides=('disomaster')
 conflicts=('disomaster')
-source=("$pkgname::git://github.com/linuxdeepin/disomaster")
+source=("$pkgname::https://github.com/linuxdeepin/disomaster")
 sha512sums=('SKIP')
 
 pkgver() {

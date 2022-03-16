@@ -11,7 +11,7 @@ makedepends=('git')
 conflicts=('dde-account-faces')
 replaces=('dde-account-faces')
 group=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dde-account-faces/")
+source=("$pkgname::https://github.com/linuxdeepin/dde-account-faces/")
 sha512sums=('SKIP')
 
 pkgver() {

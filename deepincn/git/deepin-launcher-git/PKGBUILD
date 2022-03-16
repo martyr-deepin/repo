@@ -12,7 +12,7 @@ makedepends=('git' 'cmake' 'ninja' 'gtest' 'qt5-tools' 'qt5-base' 'qt5-x11extras
 conflicts=('deepin-launcher')
 provides=('deepin-launcher')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dde-launcher.git")
+source=("$pkgname::https://github.com/linuxdeepin/dde-launcher.git")
 sha512sums=('SKIP')
 
 pkgver() {

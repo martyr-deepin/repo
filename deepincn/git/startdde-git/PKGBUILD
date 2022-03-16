@@ -17,7 +17,7 @@ optdepends=('deepin-wm: Legacy 3D window manager'
 provides=('startdde')
 conflicts=('startdde')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/startdde")
+source=("$pkgname::https://github.com/linuxdeepin/startdde")
 sha512sums=('SKIP')
 
 pkgver() {

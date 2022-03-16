@@ -15,7 +15,7 @@ makedepends=('iso-codes' 'golang-gopkg-check.v1' 'git' 'go') # git needed only f
 conflicts=('golang-deepin-lib')
 provides=('golang-deepin-lib')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/go-lib/")
+source=("$pkgname::https://github.com/linuxdeepin/go-lib/")
 sha512sums=('SKIP')
 
 pkgver() {

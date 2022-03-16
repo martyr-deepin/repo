@@ -9,7 +9,7 @@ url="https://github.com/linuxdeepin/dde-kwin"
 license=('GPL3')
 depends=('deepin-qt5integration' 'deepin-wallpapers' 'kwin')
 makedepends=('extra-cmake-modules' 'expac' 'ninja' 'qt5-tools')
-source=("$pkgname::git://github.com/linuxdeepin/dde-kwin/"
+source=("$pkgname::https://github.com/linuxdeepin/dde-kwin/"
         tabbox-chameleon-rename.patch
         added-functions-from-their-forked-kwin.patch
         fix-crash.patch

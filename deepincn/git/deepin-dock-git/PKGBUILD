@@ -13,7 +13,7 @@ makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'gtest' 'gmock' 'deepin-qt5integr
 conflicts=('deepin-dock')
 provides=('deepin-dock')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dde-dock")
+source=("$pkgname::https://github.com/linuxdeepin/dde-dock")
 sha512sums=('SKIP')
 
 pkgver() {

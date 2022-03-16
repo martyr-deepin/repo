@@ -13,7 +13,7 @@ makedepends=('git' 'qt5-tools' 'gtest' 'dtkcommon-git' 'dtkcore-git' 'dtkgui-git
 provides=('dtkwidget')
 conflicts=('dtkwidget')
 groups=('deepin-git')
-source=("$pkgname::git://github.com/linuxdeepin/dtkwidget.git")
+source=("$pkgname::https://github.com/linuxdeepin/dtkwidget.git")
 sha512sums=('SKIP')
 
 pkgver() {

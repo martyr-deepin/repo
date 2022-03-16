@@ -10,7 +10,7 @@ makedepends=('git')
 license=('GPL3')
 groups=('deepin-git')
 conflicts=('deepin-artwork' 'deepin-sound-theme')
-source=("$pkgname::git://github.com/linuxdeepin/deepin-sound-theme/")
+source=("$pkgname::https://github.com/linuxdeepin/deepin-sound-theme/")
 sha512sums=('SKIP')
 
 pkgver() {
