@@ -19,7 +19,7 @@ optdepends=('deepin-manual: for help menual'
 groups=('deepin-git')
 provides=('deepin-file-manager')
 conflicts=('deepin-file-manager')
-source=("$pkgname::https://github.com/linuxdeepin/dde-file-manager")
+source=("$pkgname::git+https://github.com/linuxdeepin/dde-file-manager")
 sha512sums=('SKIP')
 
 pkgver() {

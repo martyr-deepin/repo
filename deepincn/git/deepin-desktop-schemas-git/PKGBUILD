@@ -12,7 +12,7 @@ makedepends=('git' 'python' 'go' 'golang-deepin-lib-git')
 conflicts=('deepin-artwork-themes' 'deepin-desktop-schemas')
 provides=('deepin-desktop-schemas')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/deepin-desktop-schemas")
+source=("$pkgname::git+https://github.com/linuxdeepin/deepin-desktop-schemas")
 sha512sums=('SKIP')
 
 pkgver() {

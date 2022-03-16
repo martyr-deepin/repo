@@ -13,7 +13,7 @@ checkdepends=('golang-gopkg-check.v1')
 provides=('golang-deepin-gir')
 conflicts=('golang-deepin-gir')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/go-gir-generator")
+source=("$pkgname::git+https://github.com/linuxdeepin/go-gir-generator")
 sha512sums=('SKIP')
 
 pkgver() {

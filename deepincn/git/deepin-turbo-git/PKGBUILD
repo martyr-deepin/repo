@@ -12,7 +12,7 @@ makedepends=('cmake' 'git')
 groups=('deepin')
 provides=('deepin-turbo')
 conflicts=('deepin-turbo')
-source=("$pkgname::https://github.com/linuxdeepin/deepin-turbo")
+source=("$pkgname::git+https://github.com/linuxdeepin/deepin-turbo")
 sha512sums=('SKIP')
 
 pkgver() {

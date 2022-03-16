@@ -12,7 +12,7 @@ makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'gtest' 'gmock')
 conflicts=('deepin-session-ui<5' 'deepin-session-shell')
 provides=('lightdm-deepin-greeter' 'deepin-session-shell')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/dde-session-shell")
+source=("$pkgname::git+https://github.com/linuxdeepin/dde-session-shell")
 sha512sums=('SKIP')
 
 pkgver() {

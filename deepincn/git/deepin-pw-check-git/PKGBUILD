@@ -12,7 +12,7 @@ makedepends=('git' 'go' 'golang-github-linuxdeepin-go-dbus-factory-git' 'deepin-
 groups=('deepin-git')
 provides=('deepin-pw-check')
 conflicts=('deepin-pw-check')
-source=("$pkgname::https://github.com/linuxdeepin/deepin-pw-check")
+source=("$pkgname::git+https://github.com/linuxdeepin/deepin-pw-check")
 sha512sums=('SKIP')
 
 pkgver() {

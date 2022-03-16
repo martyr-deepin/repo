@@ -12,7 +12,7 @@ conflicts=('deepin-qt5platform-plugins')
 depends=('cairo' 'kwayland' 'qt5-wayland' 'qt5-x11extras')
 makedepends=('git' 'expac' 'qt5-xcb-private-headers' 'libglvnd' 'libxcb')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/qt5platform-plugins")
+source=("$pkgname::git+https://github.com/linuxdeepin/qt5platform-plugins")
 sha512sums=('SKIP')
 
 pkgver() {

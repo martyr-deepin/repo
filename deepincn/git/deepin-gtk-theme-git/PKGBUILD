@@ -10,7 +10,7 @@ makedepends=('git')
 license=('LGPL3')
 optdepends=('gtk-engine-murrine: for gtk2 themes')
 groups=('deepin')
-source=("$pkgname::https://github.com/linuxdeepin/deepin-gtk-theme/")
+source=("$pkgname::git+https://github.com/linuxdeepin/deepin-gtk-theme/")
 sha512sums=('SKIP')
 
 pkgver() {

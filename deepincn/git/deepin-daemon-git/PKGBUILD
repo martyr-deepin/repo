@@ -23,7 +23,7 @@ conflicts=('deepin-daemon')
 provides=('deepin-daemon')
 groups=('deepin-git')
 install="$pkgname.install"
-source=("$pkgname::https://github.com/linuxdeepin/dde-daemon"
+source=("$pkgname::git+https://github.com/linuxdeepin/dde-daemon"
         dde-daemon.patch
         remove-tc.patch
         'deepin-daemon.sysusers')

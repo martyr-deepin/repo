@@ -12,7 +12,7 @@ makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'libgnome-keyring' 'deepin-polkit
 conflicts=('deepin-polkit-agent-ext-gnomekeyring')
 provides=('deepin-polkit-agent-ext-gnomekeyring')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/dpa-ext-gnomekeyring/")
+source=("$pkgname::git+https://github.com/linuxdeepin/dpa-ext-gnomekeyring/")
 sha512sums=('SKIP')
 
 pkgver() {

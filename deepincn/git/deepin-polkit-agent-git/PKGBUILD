@@ -12,7 +12,7 @@ makedepends=('git' 'polkit-qt5' 'dtkcommon-git' 'dtkwidget-git' 'cmake' 'ninja')
 conflicts=('deepin-polkit-agent')
 provides=('deepin-polkit-agent')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/dde-polkit-agent"
+source=("$pkgname::git+https://github.com/linuxdeepin/dde-polkit-agent"
         "fix.patch")
 sha512sums=('SKIP'
             'b02235cece90a01942cd0898cfb85c7eb8fa6f980c4e1d83cfa115baba1599ca878788b5d89338444afe8267c30b11f9279ebda98d3bbc3dd4f3fe03cd1f0572')

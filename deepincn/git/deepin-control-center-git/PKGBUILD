@@ -24,7 +24,7 @@ optdepends=('redshift: automatic color temperature support'
 conflicts=('deepin-control-center')
 provides=('deepin-control-center')
 groups=('deepin-git')
-source=("$pkgname::https://github.com/linuxdeepin/dde-control-center/"
+source=("$pkgname::git+https://github.com/linuxdeepin/dde-control-center/"
         remove-auth.patch
         $_pkgname-systeminfo-deepin-icon.patch)
 sha512sums=('SKIP'
