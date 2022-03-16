@@ -54,12 +54,12 @@ def copy(struct: Struct):
         cmd = subprocess.run(['gpg', '--detach-sign', file_path], cwd=struct.cwd)
         if cmd.returncode != 0:
             os.exit(-1)
-        shutil.copy(file_path, struct.db)
-        cmd = subprocess.run(['repo-add', '-R', 'deepincn.db.tar.xz', 'file'])
+        shutil.copyfile(file_path, os.path.join(struct.db, file))
+        cmd = subprocess.run(['repo-add', '-R', 'deepincn.db.tar.xz', file], cwd=struct.db)
         if cmd.returncode != 0:
-            shutil.rmtree("{}/{}".format(struct.db, file))
+            os.remove("{}/{}".format(struct.db, file))
         else:
-            shutil.copy("{}.sig".format(file_path), struct.db)
+            shutil.copyfile("{}.sig".format(file_path), os.path.join(struct.db, '{}.sig'.format(file)))
 
 if __name__ == "__main__":
     struct = main(sys.argv[1:])
