@@ -1,0 +1,45 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+
+pkgname=deepin-movie-git
+epoch=1
+pkgver=5.9.8.r48.g225c49e9
+pkgrel=1
+pkgdesc='Movie player based on mpv'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/deepin-movie-reborn"
+license=('GPL3')
+depends=('deepin-qt5integration-git'  'ffmpegthumbnailer' 'libxtst' 'mpv' 'qtdbusextended' 'qtmpris')
+makedepends=('cmake' 'gtest' 'ninja' 'qt5-tools')
+provides=('deepin-movie')
+conflicts=('deepin-movie')
+groups=('deepin-extra-git')
+options=('!lto')
+source=("$pkgname::git+https://github.com/linuxdeepin/deepin-movie-reborn.git"
+        fix-build.patch
+       )
+sha512sums=('SKIP'
+            'SKIP')
+
+pkgver() {
+    cd $pkgname
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd $pkgname
+  patch -p1 -i ../fix-build.patch
+  # https://github.com/linuxdeepin/deepin-movie-reborn/issues/76
+  sed -i '/setCanShowInUI/d' src/vendor/presenter.cpp
+}
+
+build() {
+  cd $pkgname
+  export CXXFLAGS+=' -fpermissive'
+  cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release .
+  ninja
+}
+
+package() {
+  cd $pkgname
+  DESTDIR="$pkgdir" ninja install
+}
