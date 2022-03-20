@@ -65,6 +65,8 @@ package_deepin-wallpapers-git() {
 package_deepin-community-wallpapers-git() {
   pkgdesc='Community wallpapers for DDE'
   groups=('deepin-git')
+  provides=('deepin-wallpapers-git')
+  conflicts=('deepin-wallpapers-git')
 
   cd $pkgbase-community
   install -dm755 "$pkgdir"/usr/share/wallpapers/deepin
