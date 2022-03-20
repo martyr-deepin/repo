@@ -2,7 +2,7 @@
 
 pkgname=deepin-control-center-git
 _pkgname=deepin-control-center
-pkgver=5.4.47.r627.gb6848a8ac
+pkgver=5.4.47.r673.g52c86a908
 pkgrel=1
 pkgdesc='New control center for linux deepin'
 arch=('x86_64' 'aarch64')
@@ -25,11 +25,9 @@ conflicts=('deepin-control-center')
 provides=('deepin-control-center')
 groups=('deepin-git')
 source=("$pkgname::git+https://github.com/linuxdeepin/dde-control-center/"
-        remove-auth.patch
-        $_pkgname-systeminfo-deepin-icon.patch)
+        remove-auth.patch)
 sha512sums=('SKIP'
-            'SKIP'
-            '74fd63391e923ca37f4559f30da967ba7f33d4426b60d58d1ece8cd9a154578e8184b1a376a8d7ff3ef81ffce530915f79d0845a2612ae4e06522b96855ab3dd')
+            '79e6d8189b44bc695e51c3f3eefbc3333554b1dd4000e77f56b73eef38e7f551d1c0578b4e5ad488ba1788756763994a742da863d12cac37c7b9993405d82c9d')
 
 pkgver() {
     cd $pkgname
@@ -42,13 +40,6 @@ prepare() {
     git checkout -b $sha
   fi
 
-  rm $pkgname/src/frame/modules/authentication/widgets/faceinfowidget.h
-  rm $pkgname/src/frame/modules/authentication/widgets/faceinfowidget.cpp
-  rm -rf $pkgname/src/frame/window/modules/authentication
-
-  rm $pkgname/src/frame/window/icons/icons/dcc_nav_systeminfo_{42,84}px.svg
-  patch -d $pkgname -Np1 < $_pkgname-systeminfo-deepin-icon.patch
-  cd $pkgname
   patch -p1 -i ../remove-auth.patch
 
   # remove after they obey -DDISABLE_SYS_UPDATE properly
