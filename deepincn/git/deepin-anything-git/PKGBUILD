@@ -9,6 +9,7 @@ pkgdesc="Deepin Anything file search tool"
 arch=('x86_64' 'aarch64')
 url="https://github.com/linuxdeepin/deepin-anything"
 license=('GPL3')
+groups=('deepin-git')
 makedepends=('git' 'dtkcore-git' 'udisks2-qt5')
 source=("$pkgbase::git+https://github.com/linuxdeepin/deepin-anything"
         deepin-anything-server.sysusers)
@@ -29,24 +30,23 @@ prepare() {
 }
 
 build() {
-	cd $pkgbase
+  cd $pkgbase
   make VERSION=$pkgver
 }
 
 package_deepin-anything-dkms-git() {
   depends=('dkms')
-  provides=('DEEPIN-ANYTHING-MODULE' 'deepin-anything')
-  conflicts=('DEEPIN-ANYTHING-MODULE' 'deepin-anything')
+  provides=('DEEPIN-ANYTHING-MODULE' 'deepin-anything-git')
+  conflicts=('DEEPIN-ANYTHING-MODULE' 'deepin-anything-git')
 
   cd $pkgbase
   install -dm 755 "$pkgdir"/usr/src
-  cp -r kernelmod "$pkgdir"/usr/src/deepin-anything-$pkgver
-  install -m644 debian/deepin-anything-dkms.dkms "$pkgdir"/usr/src/deepin-anything-$pkgver/dkms.conf
+  cp -r kernelmod "$pkgdir"/usr/src/$pkgbase
+  install -m644 debian/deepin-anything-dkms.dkms "$pkgdir"/usr/src/$pkgbase/dkms.conf
 }
 
 package_deepin-anything-git() {
   depends=('DEEPIN-ANYTHING-MODULE' 'dtkcore-git' 'udisks2-qt5')
-  groups=('deepin-git')
 
   cd $pkgbase
   make VERSION=$pkgver DESTDIR="$pkgdir" install
