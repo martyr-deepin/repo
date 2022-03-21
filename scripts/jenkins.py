@@ -22,7 +22,8 @@ class Args:
                         self.cwd = os.path.join(dir, file)
                         break
             if len(self.cwd) != 0:
-                break
+                return
+        exit(1)
 
 def updatePKGBUILD(args: Args):
     lines = []
