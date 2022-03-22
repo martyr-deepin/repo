@@ -52,7 +52,7 @@ def copy(struct: Struct):
         if not file.endswith('.zst'):
             continue
         file_path = os.path.join(struct.cwd, file)
-        cmd = subprocess.run(['gpg', '--detach-sign', file_path], cwd=struct.cwd, shell=True)
+        cmd = subprocess.run(['gpg', '--detach-sign', file_path], cwd=struct.cwd)
         if cmd.returncode != 0:
             sys.exit(-1)
         shutil.copyfile(file_path, os.path.join(struct.db, file))
