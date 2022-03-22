@@ -23,7 +23,8 @@ class Struct:
                         self.cwd = os.path.join(dir, file)
                         break
             if len(self.cwd) != 0:
-                break
+                return
+        sys.exit(1)
 
 def main(argv):
     name = ''
@@ -53,7 +54,7 @@ def copy(struct: Struct):
         file_path = os.path.join(struct.cwd, file)
         cmd = subprocess.run(['gpg', '--detach-sign', file_path], cwd=struct.cwd)
         if cmd.returncode != 0:
-            os.exit(-1)
+            sys.exit(-1)
         shutil.copyfile(file_path, os.path.join(struct.db, file))
         cmd = subprocess.run(['repo-add', '-R', 'deepincn.db.tar.xz', file], cwd=struct.db)
         if cmd.returncode != 0:
