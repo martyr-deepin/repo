@@ -36,7 +36,7 @@ def updatePKGBUILD(args: Args):
             f.write(line)
 
 def build(args: Args):
-    commands = [['deepincn-x86_64-build', '--', '--', '-c', '-C']]
+    commands = [['deepin-x86_64-build', '-c', '--', '--', '-c', '-C']]
     for command in commands:
         result = subprocess.run(command, cwd=args.cwd)
         if result.returncode != 0:
