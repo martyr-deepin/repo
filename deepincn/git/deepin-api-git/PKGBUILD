@@ -1,7 +1,7 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
 pkgname=deepin-api-git
-pkgver=5.5.9.r8.g916f644
+pkgver=5.5.12.r8.ga0dc403
 pkgrel=1
 pkgdesc='Golang bindings for dde-daemon'
 arch=('x86_64' 'aarch64')
@@ -37,11 +37,8 @@ prepare() {
     git checkout -b $sha 
   fi
 
-  cd $srcdir
-  export GOPATH="$srcdir/build:/usr/share/gocode"
+  export GOPATH="$PWD/gobuild:/usr/share/gocode"
   export GO111MODULE=off
-  mkdir -p build/src/github.com/linuxdeepin/dde/api
-  cp -a $pkgname/* build/src/github.com/linuxdeepin/dde/api/
 
   # golang-deepin-lib's dependency, remove when go packaging resumes
   go get -v github.com/cryptix/wav
@@ -61,9 +58,8 @@ prepare() {
 
 build(){
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
-  export GO111MODULE=off
   cd $pkgname
-  make
+  make -j1
 }
 
 package() {
