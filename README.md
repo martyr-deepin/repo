@@ -3,7 +3,7 @@ deepin git version for archlinux
 
 This repository only provides the git version of deepin. You can replace the deepin group in the community by installing the deepin-git group.
 
-The PKGBUILD for all packages are there [https://github.com/justforlxz/deepin-git-repo](https://github.com/justforlxz/deepin-git-repo), Each branch saves the corresponding software.
+The PKGBUILD for all packages are there [https://github.com/deepin-community/repo](https://github.com/deepin-community/repo), Each branch saves the corresponding software.
 
 Before adding this repository, you should first add the key used to sign the packages in it. You can do this by running the following commands:
 
@@ -29,6 +29,10 @@ Server = https://packages.mkacg.com/arch/deepin/
 at the end of the file. See [https://wiki.archlinux.org/index.php/Pacman#Repositories_and_mirrors](https://wiki.archlinux.org/index.php/Pacman#Repositories_and_mirrors) for details.
 
 to install deepin git version:
+
+```shell
+sudo pacman -Syy
+```
 
 ```shell
 sudo pacman -Syy deepin-git
