@@ -1,12 +1,8 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 
-# Maintainer: Felix Yan <felixonmars@archlinux.org>
-# Contributor: Josip Ponjavic <josipponjavic at gmail dot com>
-# Contributor: Xu Fasheng <fasheng.xu[AT]gmail.com>
-
 pkgbase=deepin-wallpapers-git
 pkgname=(deepin-wallpapers-git deepin-community-wallpapers-git)
-pkgver=1.7.7.r9.ga579405
+pkgver=1.6.14.1.r4.g9d8abcc
 pkgrel=1
 epoch=1
 pkgdesc='Deepin Wallpapers'
@@ -47,6 +43,8 @@ build() {
 package_deepin-wallpapers-git() {
   pkgdesc='Default wallpapers for DDE'
   groups=('deepin-git')
+  provides=('deepin-wallpapers' 'deepin-community-wallpapers-git')
+  conflicts=('deepin-wallpapers' 'deepin-community-wallpapers-git')
 
   cd $pkgbase
   install -dm755 "$pkgdir"/usr/share/wallpapers
@@ -65,8 +63,8 @@ package_deepin-wallpapers-git() {
 package_deepin-community-wallpapers-git() {
   pkgdesc='Community wallpapers for DDE'
   groups=('deepin-git')
-  provides=('deepin-wallpapers-git')
-  conflicts=('deepin-wallpapers-git')
+  provides=('deepin-wallpapers-git' 'deepin-wallpapers')
+  conflicts=('deepin-wallpapers-git' 'deepin-wallpapers')
 
   cd $pkgbase-community
   install -dm755 "$pkgdir"/usr/share/wallpapers/deepin
