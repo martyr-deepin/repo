@@ -9,7 +9,9 @@ url="https://github.com/linuxdeepin/deepin-icon-theme"
 makedepends=('git')
 license=('LGPL3')
 optdepends=('gtk-engine-murrine: for gtk2 themes')
-groups=('deepin')
+provides=('deepin-icon-theme')
+conflicts=('deepin-icon-theme')
+groups=('deepin-git')
 source=("$pkgname::git+https://github.com/linuxdeepin/deepin-icon-theme/")
 sha512sums=('SKIP')
 
