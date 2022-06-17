@@ -39,17 +39,18 @@ prepare() {
   if [[ ! -z ${sha} ]];then
     git checkout -b $sha
   fi
-
-  patch -p1 -i ../remove-auth.patch
-
-  # remove after they obey -DDISABLE_SYS_UPDATE properly
-  sed -i '/new UpdateModule/d' src/frame/window/mainwindow.cpp
 }
 
 build() {
   mkdir -p $pkgname/build
   cd $pkgname/build
-  cmake -GNinja -DDISABLE_SYS_UPDATE=YES -DDISABLE_RECOVERY=YES -DDISABLE_ACTIVATOR=YES -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+  cmake -GNinja \
+        -DDISABLE_SYS_UPDATE=YES \
+        -DDISABLE_RECOVERY=YES \
+        -DDISABLE_ACTIVATOR=YES \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DDISABLE_AUTHENTICATION=YES \
+        -DCMAKE_INSTALL_LIBDIR=/usr/lib \
     ../
   ninja
 }
