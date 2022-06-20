@@ -3,16 +3,18 @@ From: Felix Yan <felixonmars@archlinux.org>
 Date: Wed, 26 Feb 2020 18:36:20 +0800
 Subject: [PATCH] Rename thumbnail_grid to avoid conflict with new
  kdeplasma-addons
-
 ---
  configures/kwinrc                                         | 2 +-
  tabbox/CMakeLists.txt                                     | 2 +-
- tabbox/{thumbnail_grid => chameleon}/contents/ui/main.qml | 0
- tabbox/{thumbnail_grid => chameleon}/metadata.desktop     | 6 +++---
+ tabbox/{thumbnail_grid => chameleon}
+/contents/ui/main.qml | 0
+ tabbox/{thumbnail_grid => chameleon}
+/metadata.desktop     | 6 +++---
  4 files changed, 5 insertions(+), 5 deletions(-)
- rename tabbox/{thumbnail_grid => chameleon}/contents/ui/main.qml (100%)
- rename tabbox/{thumbnail_grid => chameleon}/metadata.desktop (71%)
-
+ rename tabbox/{thumbnail_grid => chameleon}
+/contents/ui/main.qml (100%)
+ rename tabbox/{thumbnail_grid => chameleon}
+/metadata.desktop (71%)
 diff --git a/configures/kwinrc b/configures/kwinrc
 index 3134b0a78..66a771d8a 100644
 --- a/configures/kwinrc
@@ -36,7 +38,8 @@ index af1c0d929..d377f3056 100644
 -    thumbnail_grid
 +    chameleon
      DESTINATION
-     ${CMAKE_INSTALL_PREFIX}/share/kwin/tabbox
+     ${CMAKE_INSTALL_PREFIX}
+/share/kwin/tabbox
  )
 diff --git a/tabbox/thumbnail_grid/contents/ui/main.qml b/tabbox/chameleon/contents/ui/main.qml
 similarity index 100%
@@ -54,7 +57,7 @@ index 7114afe0b..97ae44aa3 100755
 -Name=Thumbnail Grid
 +Name=Chameleon
  Comment=
- 
+
  Type=Service
 @@ -11,7 +11,7 @@ X-Plasma-MainScript=ui/main.qml
  Icon=preferences-system-windows-switcher-big-icons

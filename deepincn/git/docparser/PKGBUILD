@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=docparser-git
 pkgver=1.0.1.r0.g908a80a
 pkgrel=1
@@ -12,21 +11,20 @@ makedepends=('qt5-tools')
 conflicts=('docparser')
 replaces=('docparser')
 groups=('deepin-git')
-source=("$pkgname::git+https://github.com/linuxdeepin/docparser.git")
+source=("$pkgname-$pkgver::source.tar.gz")
 b2sums=('SKIP')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   qmake-qt5 PREFIX=/usr
   make
 }
 
 package() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   make INSTALL_ROOT="$pkgdir" install
 }

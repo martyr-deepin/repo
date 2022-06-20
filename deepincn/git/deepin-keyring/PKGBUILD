@@ -10,9 +10,7 @@ optdepends=('pkgstats: install to submit package usage statistics')
 install="deepin-keyring.install"
 source=("deepin-keyring-$pkgver.tar.gz::https://github.com/deepin-community/deepin-keyring/archive/$pkgver.tar.gz")
 sha512sums=('2b458fe724360ca4597d4aa08c116d1d393066a9820dcda693a35fb87759a0c7f9003ee481ee6206e0d7b9d97a3321f0c687f92e86a0d7d03215515a53860fd9')
-
 package() {
   cd "$srcdir/deepin-keyring-$pkgver"
-
   make PREFIX=/usr "DESTDIR=$pkgdir" install
 }

@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=deepin-control-center-git
 _pkgname=deepin-control-center
 pkgver=5.4.47.r673.g52c86a908
@@ -24,26 +23,22 @@ optdepends=('redshift: automatic color temperature support'
 conflicts=('deepin-control-center')
 provides=('deepin-control-center')
 groups=('deepin-git')
-source=("$pkgname::git+https://github.com/linuxdeepin/dde-control-center/"
+source=("$pkgname-$pkgver::source.tar.gz"
         remove-auth.patch)
 sha512sums=('SKIP'
             '79e6d8189b44bc695e51c3f3eefbc3333554b1dd4000e77f56b73eef38e7f551d1c0578b4e5ad488ba1788756763994a742da863d12cac37c7b9993405d82c9d')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-  cd $pkgname
-  if [[ ! -z ${sha} ]];then
-    git checkout -b $sha
-  fi
+  cd $pkgname-$pkgver
 }
 
 build() {
   mkdir -p $pkgname/build
-  cd $pkgname/build
+  cd $pkgname-$pkgver/build
   cmake -GNinja \
         -DDISABLE_SYS_UPDATE=YES \
         -DDISABLE_RECOVERY=YES \
@@ -56,6 +51,6 @@ build() {
 }
 
 package() {
-  cd $pkgname/build
+  cd $pkgname-$pkgver/build
   DESTDIR="$pkgdir" ninja install
 }

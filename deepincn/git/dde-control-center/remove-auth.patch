@@ -4,7 +4,7 @@ diff -Nrup deepin-control-center-git.orig/src/frame/CMakeLists.txt deepin-contro
 @@ -257,35 +257,6 @@ set(WIDGETS_FILES
  set(MODULE_FILES
  )
- 
+
 -# load authentatication
 -set(AUTHENTICATION_FILES
 -    modules/authentication/fingermodel.cpp
@@ -39,12 +39,19 @@ diff -Nrup deepin-control-center-git.orig/src/frame/CMakeLists.txt deepin-contro
                  modules/accounts/creationresult.cpp
 @@ -514,7 +485,6 @@ set(SRCS
          ${FRAME_FILES}
+
          ${WINDOW_FILES}
+
          ${INTERFACES_FILES}
+
 -        ${AUTHENTICATION_FILES}
+
          ${ACCOUNTS_FILES}
+
          ${BLUETOOTH_FILES}
+
          ${DATETIME_FILES}
+
 @@ -541,7 +511,6 @@ set(QRC
          modules/datetime/timezone_dialog.qrc
          modules/power/power.qrc
@@ -54,13 +61,15 @@ diff -Nrup deepin-control-center-git.orig/src/frame/CMakeLists.txt deepin-contro
          modules/bluetooth/bluetooth.qrc
          modules/defapp/defapp.qrc
 @@ -597,7 +566,6 @@ file(GLOB DCONFIG_FILES "../../configs/d
- dconfig_meta_files(APPID dde-control-center BASE ../../configs FILES ${DCONFIG_FILES})
- 
+ dconfig_meta_files(APPID dde-control-center BASE ../../configs FILES ${DCONFIG_FILES}
+)
+
  set(DEEPIN_PW_CHECK libdeepin_pw_check.so)
 -set(SHMN_VIDEO libdareader.so)
- 
+
  function(add_build_macro macro)
-     string(TOUPPER ${macro} macro)
+     string(TOUPPER ${macro}
+ macro)
 diff -Nrup deepin-control-center-git.orig/src/frame/window/mainwindow.cpp deepin-control-center-git/src/frame/window/mainwindow.cpp
 --- deepin-control-center-git.orig/src/frame/window/mainwindow.cpp	2022-02-24 14:28:51.000000000 +0800
 +++ deepin-control-center-git/src/frame/window/mainwindow.cpp	2022-02-24 14:30:05.000000000 +0800
@@ -74,7 +83,7 @@ diff -Nrup deepin-control-center-git.orig/src/frame/window/mainwindow.cpp deepin
  #include "modules/commoninfo/commoninfomodule.h"
 @@ -312,7 +311,6 @@ void MainWindow::initAllModule(const QSt
          return;
- 
+
      m_bInit = true;
 -    using namespace authentication;
      using namespace sync;
@@ -82,9 +91,12 @@ diff -Nrup deepin-control-center-git.orig/src/frame/window/mainwindow.cpp deepin
      using namespace defapp;
 @@ -332,7 +330,6 @@ void MainWindow::initAllModule(const QSt
      using namespace notification;
- 
+
      m_modules = {
--        { new LoginOptionsModule(this), tr("Biometric Authentication")},
-         { new AccountsModule(this), tr("Accounts")},
+-        { new LoginOptionsModule(this), tr("Biometric Authentication")}
+,
+         { new AccountsModule(this), tr("Accounts")}
+,
          //~ contents_path /cloudsync/Cloud Sync
-         { new SyncModule(this), DSysInfo::isCommunityEdition() ? "Deepin ID" : "Union ID"},
+         { new SyncModule(this), DSysInfo::isCommunityEdition() ? "Deepin ID" : "Union ID"}
+,

@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=golang-github-linuxdeepin-go-x11-client-git
 pkgver=0.6.8.r2.g9476531
 pkgrel=1
@@ -13,19 +12,15 @@ groups=('deepin-git')
 depends=('golang-golang-x-text')
 makedepends=('git' 'go' 'xorg-server-xvfb' 'golang-github-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2')
 checkdepends=('xorg-server-xvfb' 'golang-github-stretchr-testify' 'golang-gopkg-check.v1' 'golang-gopkg-yaml.v2' 'git')
-source=("$pkgname::git+https://github.com/linuxdeepin/go-x11-client")
+source=("$pkgname-$pkgver::source.tar.gz")
 sha512sums=('SKIP')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-  cd $pkgname
-  if [[ ! -z ${sha} ]];then
-    git checkout -b $sha
-  fi
+  cd $pkgname-$pkgver
   rm -rf tools
 }
 
@@ -42,6 +37,5 @@ check() {
 package() {
   mkdir -p "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin
   cp -a "$srcdir/$pkgname" "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-x11-client
-
   rm -r "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-x11-client/debian
 }

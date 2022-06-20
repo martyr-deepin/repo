@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=deepin-pw-check-git
 pkgver=5.1.6.r5.g10c0e2f
 pkgrel=1
@@ -12,19 +11,15 @@ makedepends=('git' 'go' 'golang-github-linuxdeepin-go-dbus-factory-git' 'deepin-
 groups=('deepin-git')
 provides=('deepin-pw-check')
 conflicts=('deepin-pw-check')
-source=("$pkgname::git+https://github.com/linuxdeepin/deepin-pw-check")
+source=("$pkgname-$pkgver::source.tar.gz")
 sha512sums=('SKIP')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-  cd $pkgname
-  if [[ ! -z ${sha} ]];then
-    git checkout -b $sha
-  fi
+  cd $pkgname-$pkgver
 
     export GOPATH="$srcdir/build:/usr/share/gocode"
     export GO111MODULE=off
@@ -37,16 +32,20 @@ prepare() {
 }
 
 build() {
-  cd $pkgname
-  export CGO_CPPFLAGS="${CPPFLAGS}"
-  export CGO_CFLAGS="${CFLAGS}"
-  export CGO_CXXFLAGS="${CXXFLAGS}"
-  export CGO_LDFLAGS="${LDFLAGS}"
+  cd $pkgname-$pkgver
+  export CGO_CPPFLAGS="${CPPFLAGS}
+"
+  export CGO_CFLAGS="${CFLAGS}
+"
+  export CGO_CXXFLAGS="${CXXFLAGS}
+"
+  export CGO_LDFLAGS="${LDFLAGS}
+"
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
   make
 }
 
 package() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   make DESTDIR="$pkgdir" install
 }

@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=deepin-desktop-schemas-git
 pkgver=5.10.2.r8.gd9e09d5
 pkgrel=1
@@ -12,20 +11,16 @@ makedepends=('git' 'python' 'go' 'golang-deepin-lib-git')
 conflicts=('deepin-artwork-themes' 'deepin-desktop-schemas')
 provides=('deepin-desktop-schemas')
 groups=('deepin-git')
-source=("$pkgname::git+https://github.com/linuxdeepin/deepin-desktop-schemas")
+source=("$pkgname-$pkgver::source.tar.gz")
 sha512sums=('SKIP')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
   export GOPATH="$srcdir/build:/usr/share/gocode"
-  cd $pkgname
-  if [[ ! -z ${sha} ]];then
-    git checkout -b $sha
-  fi
+  cd $pkgname-$pkgver
 
   # fix default background url
   sed -i "s#/usr/share/backgrounds/default_background.jpg#/usr/share/backgrounds/deepin/desktop.jpg#" \
@@ -35,22 +30,25 @@ prepare() {
 }
 
 build() {
-  export CGO_CPPFLAGS="${CPPFLAGS}"
-  export CGO_CFLAGS="${CFLAGS}"
-  export CGO_CXXFLAGS="${CXXFLAGS}"
-  export CGO_LDFLAGS="${LDFLAGS}"
+  export CGO_CPPFLAGS="${CPPFLAGS}
+"
+  export CGO_CFLAGS="${CFLAGS}
+"
+  export CGO_CXXFLAGS="${CXXFLAGS}
+"
+  export CGO_LDFLAGS="${LDFLAGS}
+"
   export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
-
-  cd $pkgname
+  cd $pkgname-$pkgver
   make ARCH=x86
 }
 
 check() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   make test
 }
 
 package() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   make DESTDIR="$pkgdir" install
 }

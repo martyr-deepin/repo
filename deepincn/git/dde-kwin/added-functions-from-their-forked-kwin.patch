@@ -3,7 +3,6 @@ From: wangxinbo <wangxinbo@uniontech.com>
 Date: Tue, 11 Aug 2020 14:19:26 +0800
 Subject: [PATCH] feat: add touch pad double click with three fingers to move
  active client
-
 pms task id 30501
 ---
  deepin-wm-dbus/com.deepin.wm.xml.in            |  6 ++++++
@@ -13,7 +12,6 @@ pms task id 30501
  plugins/platforms/lib/kwinutils.h              |  2 ++
  .../plugin/org.kde.kwin.KWinUtils.xml          |  6 ++++++
  6 files changed, 45 insertions(+)
-
 diff --git a/deepin-wm-dbus/com.deepin.wm.xml.in b/deepin-wm-dbus/com.deepin.wm.xml.in
 index 8a45365..ff4629a 100644
 --- a/deepin-wm-dbus/com.deepin.wm.xml.in
@@ -36,13 +34,15 @@ index 453280d..2f3f48a 100644
 @@ -681,6 +681,20 @@ void DeepinWMFaker::BeginToMoveActiveWindow()
      m_kwinUtilsInter->WindowMove();
  }
- 
+
+
 +void DeepinWMFaker::TouchToMove(int x, int y)
 +{
 +#ifndef DISABLE_DEEPIN_WM
 +    m_kwinUtilsInter->TouchPadToMoveWindow(x,y);
 +#endif
 +}
+
 +
 +void DeepinWMFaker::ClearMoveStatus()
 +{
@@ -50,6 +50,7 @@ index 453280d..2f3f48a 100644
 +    m_kwinUtilsInter->EndTouchPadToMoveWindow();
 +#endif
 +}
+
 +
  void DeepinWMFaker::SwitchApplication(bool backward)
  {
@@ -61,7 +62,7 @@ index 9ee73ab..ae6374a 100644
 @@ -136,6 +136,8 @@ public Q_SLOTS:
      bool GetIsShowDesktop();
      void SetShowDesktop(bool isShowDesktop);
- 
+
 +    void TouchToMove(int x, int y);
 +    void ClearMoveStatus();
  Q_SIGNALS:
@@ -77,20 +78,24 @@ index 8bf9e27..0be9682 100644
      bool compositing() const;
 +    void slotTouchPadTomoveWindow(int x, int y);
 +    void slotEndTouchPadToMoveWindow();
- 
+
  #if !defined(KWIN_VERSION) || KWIN_VERSION < KWIN_VERSION_CHECK(5, 10, 95, 0)
      // kwin < 5.10.95
 @@ -1082,6 +1084,22 @@ void KWinUtils::WindowMove()
      }
+
  }
- 
+
+
 +void KWinUtils::TouchPadToMoveWindow(int x, int y)
 +{
 +    KWin::Workspace *ws = static_cast<KWin::Workspace *>(workspace());
 +    if (ws) {
 +        ws->slotTouchPadTomoveWindow(x,y);
 +    }
+
 +}
+
 +
 +void KWinUtils::EndTouchPadToMoveWindow()
 +{
@@ -98,7 +103,9 @@ index 8bf9e27..0be9682 100644
 +    if (ws) {
 +        ws->slotEndTouchPadToMoveWindow();
 +    }
+
 +}
+
 +
  void KWinUtils::WindowMaximize()
  {
@@ -113,7 +120,7 @@ index 57edb86..2c75875 100644
      void SuspendCompositor(int type);
 +    void TouchPadToMoveWindow(int x, int y);
 +    void EndTouchPadToMoveWindow();
- 
+
  Q_SIGNALS:
      void initialized();
 diff --git a/plugins/platforms/plugin/org.kde.kwin.KWinUtils.xml b/plugins/platforms/plugin/org.kde.kwin.KWinUtils.xml

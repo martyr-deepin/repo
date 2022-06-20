@@ -1,5 +1,4 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
-
 pkgname=golang-deepin-lib-git
 pkgver=6.0.0.r7.g0e8fa1d
 pkgrel=1
@@ -15,20 +14,16 @@ makedepends=('iso-codes' 'golang-gopkg-check.v1' 'git' 'go') # git needed only f
 conflicts=('golang-deepin-lib')
 provides=('golang-deepin-lib')
 groups=('deepin-git')
-source=("$pkgname::git+https://github.com/linuxdeepin/go-lib/")
+source=("$pkgname-$pkgver::source.tar.gz")
 sha512sums=('SKIP')
-
 pkgver() {
-    cd $pkgname
+    cd $pkgname-$pkgver
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
   export GO111MODULE=off
-  cd $pkgname
-  if [[ ! -z ${sha} ]];then
-    git checkout -b $sha
-  fi
+  cd $pkgname-$pkgver
 
   sed -i 's/int connect_timeout;/extern int connect_timeout;/' pulse/dde-pulse.h
 }
@@ -58,6 +53,5 @@ check() {
 package() {
   mkdir -p "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin
   cp -a "$srcdir/$pkgname" "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-lib
-
   rm -r "$pkgdir"/usr/share/gocode/src/github.com/linuxdeepin/go-lib/debian
 }

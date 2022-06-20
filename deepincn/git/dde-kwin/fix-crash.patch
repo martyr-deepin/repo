@@ -4,19 +4,22 @@ index 4f2f7c58a..d022392ea 100644
 +++ b/plugins/platforms/lib/kwinutils.cpp
 @@ -148,6 +148,12 @@ public:
      static Cursor *s_self;
- };
- 
+ }
+;
+
 +class Cursors : public QObject
 +{
 +public:
 +    static Cursors *s_self;
-+};
++}
+;
 +
- class AbstractClient : public QObject {};
+ class AbstractClient : public QObject {}
+;
  class Options {
  public:
 @@ -606,7 +612,21 @@ QObject *KWinUtils::tabBox()
- 
+
  QObject *KWinUtils::cursor()
  {
 +#if defined(KWIN_VERSION) && KWIN_VERSION <= KWIN_VERSION_CHECK(5, 18, 4, 0)
@@ -35,5 +38,6 @@ index 4f2f7c58a..d022392ea 100644
 +    return KWin::Cursors::s_self;
 +#endif
  }
- 
+
+
  QObject *KWinUtils::virtualDesktop()
